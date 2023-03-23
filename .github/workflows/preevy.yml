@@ -26,3 +26,8 @@ jobs:
           preevy init --from "s3://preview-297324796627-gh-action?region=us-east-1"
           cd production
           preevy up --log-level debug
+          cat << EOF
+          | Service | Port | URL |
+          |---------|------|-----|
+          $(preevy urls --json | jq -r '.[] | {service, port, url} | join(" | ") | "| " + . + " |" ')
+          EOF 
