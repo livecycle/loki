@@ -17,7 +17,7 @@ jobs:
       - uses: aws-actions/configure-aws-credentials@v2
         with:
           role-to-assume: arn:aws:iam::297324796627:role/loki-github-action
-          aws-region: ${{ inputs.aws-region }}
+          aws-region: ${{ env.AWS_REGION }}
       - uses: actions/checkout@v3
       - name: Install Preevy CLI
         run: npm i -g preevy
