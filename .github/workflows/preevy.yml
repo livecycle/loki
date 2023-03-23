@@ -25,4 +25,4 @@ jobs:
         run: |
           preevy init --from "s3://preview-297324796627-gh-action?region=us-east-1"
           cd production
-          preevy up
+          preevy up --log-level debug
