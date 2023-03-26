@@ -44,4 +44,4 @@ jobs:
         #   owner: octokit
         #   repo: request-action
         run: |
-          echo "${{ steps.output_urls.outputs.urls_table }}"",
+          echo "${{ steps.output_urls.outputs.urls_table }}",
