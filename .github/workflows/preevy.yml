@@ -1,5 +1,4 @@
 name: Deploy Preevy environment
-
 on:
   pull_request:
     types:
@@ -26,8 +25,20 @@ jobs:
           preevy init --from "s3://preview-297324796627-gh-action?region=us-east-1"
           cd production
           preevy up --log-level debug
-          cat << EOF
+      - name: output URLs
+        id: output_urls
+        run: |
+          export urls_table=$(cat << EOF
           | Service | Port | URL |
           |---------|------|-----|
           $(preevy urls --json | jq -r '.[] | {service, port, url} | join(" | ") | "| " + . + " |" ')
-          EOF 
+          EOF)
+          echo "urls_table=$urls_table" >> "$GITHUB_OUTPUT"
+      - name: Create PR comment with URLs
+        # uses: octokit/request-action@v2.1.0
+        # with:
+        #   route: GET /repos/{owner}/{repo}/releases/latest
+        #   owner: octokit
+        #   repo: request-action
+        run: |
+          echo "${{ steps.output_urls.outputs.urls_table }}""
