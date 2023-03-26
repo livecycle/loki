@@ -28,11 +28,12 @@ jobs:
       - name: output URLs
         id: output_urls
         run: |
-          export urls_table=$(cat << EOF
+          cat << EOF > urls.txt
           | Service | Port | URL |
           |---------|------|-----|
           $(preevy urls --json | jq -r '.[] | {service, port, url} | join(" | ") | "| " + . + " |" ')
-          EOF)
+          EOF
+          export urls_table=$(cat urls.txt)
           echo "urls_table=$urls_table" >> "$GITHUB_OUTPUT"
       - name: Create PR comment with URLs
         # uses: octokit/request-action@v2.1.0
