@@ -21,13 +21,11 @@ jobs:
       - name: Install Preevy CLI
         run: npm i -g preevy
       - name: Run preevy up
+        id: preevy_up
         run: |
           preevy init --from "s3://preview-297324796627-gh-action?region=us-east-1"
           cd production
           preevy up --log-level debug
-      - name: output URLs
-        id: output_urls
-        run: |
           cat << EOF > urls.txt
           | Service | Port | URL |
           |---------|------|-----|
@@ -44,4 +42,4 @@ jobs:
         #   owner: octokit
         #   repo: request-action
         run: |
-          echo "${{ steps.output_urls.outputs.urls_table }}",
+          echo "${{ steps.preevy_up.outputs.urls_table }}",
