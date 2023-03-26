@@ -33,8 +33,10 @@ jobs:
           |---------|------|-----|
           $(preevy urls --json | jq -r '.[] | {service, port, url} | join(" | ") | "| " + . + " |" ')
           EOF
-          export urls_table=$(cat urls.txt)
-          echo "urls_table=$urls_table" >> "$GITHUB_OUTPUT"
+          EOF=$(dd if=/dev/urandom bs=15 count=1 status=none | base64)
+          echo "urls_table<<$EOF" >> $GITHUB_ENV
+          cat urls.txt >> $GITHUB_ENV
+          echo "$EOF" >> $GITHUB_ENV
       - name: Create PR comment with URLs
         # uses: octokit/request-action@v2.1.0
         # with:
@@ -42,4 +44,4 @@ jobs:
         #   owner: octokit
         #   repo: request-action
         run: |
-          echo "${{ steps.output_urls.outputs.urls_table }}""
+          echo "${{ steps.output_urls.outputs.urls_table }}"",
