@@ -20,6 +20,8 @@ jobs:
       - uses: actions/checkout@v3
       - name: Install Preevy CLI
         run: npm i -g preevy
+      - name: Show Preevy version
+        run: preevy version
       - name: Run preevy up
         id: preevy_up
         run: |
