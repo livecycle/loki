@@ -9,6 +9,7 @@ env:
 permissions:
   id-token: write
   contents: read
+  pull-requests: write
 jobs:
   deploy:
     runs-on: ubuntu-latest
@@ -19,7 +20,12 @@ jobs:
           aws-region: ${{ env.AWS_REGION }}
       - uses: actions/checkout@v3
       - uses: livecycle/gh-action-preevy@v0.0.1-alpha
+        id: preevy
         with:
           profile-url: "s3://preevy-297324796627-test3?region=eu-west-1"
           command: "up"
           args: "-f ./production/docker-compose.yaml"
+      - uses: mshick/add-pr-comment@v2
+        with:
+          message: ${{ steps.preevy.outputs.preview-environments-urls }}
+        
