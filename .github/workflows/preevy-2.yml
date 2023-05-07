@@ -5,7 +5,7 @@ on:
       - opened
       - synchronize
 env:
-  AWS_REGION: "us-east-1"
+  AWS_REGION: "eu-west-1"
 permissions:
   id-token: write
   contents: read
