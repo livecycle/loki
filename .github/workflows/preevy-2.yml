@@ -21,4 +21,4 @@ jobs:
         with:
           profile-url: "s3://preview-297324796627-gh-action?region=us-east-1"
           command: "up"
-          args: "--log-level debug"
+          args: "-f ./production/docker-compose.yaml  --log-level debug"
