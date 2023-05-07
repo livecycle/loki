@@ -17,8 +17,9 @@ jobs:
         with:
           role-to-assume: arn:aws:iam::297324796627:role/loki-github-action
           aws-region: ${{ env.AWS_REGION }}
+      - uses: actions/checkout@v3
       - uses: livecycle/gh-action-preevy@v0.0.1-alpha
         with:
           profile-url: "s3://preview-297324796627-gh-action?region=us-east-1"
           command: "up"
-          args: "-f ./production/docker-compose.yaml  --log-level debug"
+          args: "-f ./production/docker-compose.yaml"
