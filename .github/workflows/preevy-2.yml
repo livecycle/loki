@@ -33,5 +33,5 @@ jobs:
 
             # JSON:
 
-            ${{ steps.preevy.outputs.urls-markdown }} 
+            ${{ steps.preevy.outputs.urls-json }} 
           
