@@ -19,12 +19,11 @@ jobs:
           role-to-assume: arn:aws:iam::297324796627:role/loki-github-action
           aws-region: ${{ env.AWS_REGION }}
       - uses: actions/checkout@v3
-      - uses: livecycle/gh-action-preevy@v0.0.1-alpha
+      - uses: livecycle/preevy-up@v0.0.2-alpha
         id: preevy
         with:
           profile-url: "s3://preevy-297324796627-test3?region=eu-west-1"
-          command: "up"
-          args: "-f ./production/docker-compose.yaml"
+          docker-compose-yaml-path: "./production/docker-compose.yaml"
       - uses: mshick/add-pr-comment@v2
         with:
           message: ${{ steps.preevy.outputs.preview-environments-urls }}
