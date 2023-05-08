@@ -26,5 +26,12 @@ jobs:
           docker-compose-yaml-path: "./production/docker-compose.yaml"
       - uses: mshick/add-pr-comment@v2
         with:
-          message: ${{ steps.preevy.outputs.preview-environments-urls }}
-        
+          message: |
+            # Markdown: 
+
+            ${{ steps.preevy.outputs.urls-markdown }} 
+
+            # JSON:
+
+            ${{ steps.preevy.outputs.urls-markdown }} 
+          
