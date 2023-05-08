@@ -19,7 +19,7 @@ jobs:
           role-to-assume: arn:aws:iam::297324796627:role/loki-github-action
           aws-region: ${{ env.AWS_REGION }}
       - uses: actions/checkout@v3
-      - uses: livecycle/preevy-up@v0.0.2-alpha
+      - uses: livecycle/preevy-up@v0.0.3-alpha
         id: preevy
         with:
           profile-url: "s3://preevy-297324796627-test3?region=eu-west-1"
