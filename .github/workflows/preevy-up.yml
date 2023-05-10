@@ -1,0 +1,37 @@
+name: Deploy Preevy environment
+on:
+  pull_request:
+    types:
+      - opened
+      - synchronize
+env:
+  AWS_REGION: "eu-west-1"
+permissions:
+  id-token: write
+  contents: read
+  pull-requests: write
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: aws-actions/configure-aws-credentials@v2
+        with:
+          role-to-assume: arn:aws:iam::297324796627:role/loki-github-action
+          aws-region: ${{ env.AWS_REGION }}
+      - uses: actions/checkout@v3
+      - uses: livecycle/preevy-up-action@latest
+        id: preevy
+        with:
+          profile-url: "s3://preevy-297324796627-test3?region=eu-west-1"
+          docker-compose-yaml-path: "./production/docker-compose.yaml"
+      - uses: mshick/add-pr-comment@v2
+        with:
+          message: |
+            # Markdown: 
+
+            ${{ steps.preevy.outputs.urls-markdown }} 
+
+            # JSON:
+
+            ${{ steps.preevy.outputs.urls-json }} 
+          
