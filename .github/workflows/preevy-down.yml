@@ -21,4 +21,4 @@ jobs:
         id: preevy
         with:
           profile-url: "s3://preevy-297324796627-test3?region=eu-west-1"
-          docker-compose-yaml-path: "./production/docker-compose.yaml"
+          args: "-f ./docker/docker-compose.yaml"
