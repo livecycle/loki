@@ -1,4 +1,4 @@
-name: Deploy Preevy environment - with new action
+name: Deploy Preevy environment
 on:
   pull_request:
     types:
@@ -19,7 +19,7 @@ jobs:
           role-to-assume: arn:aws:iam::297324796627:role/loki-github-action
           aws-region: ${{ env.AWS_REGION }}
       - uses: actions/checkout@v3
-      - uses: livecycle/preevy-up@latest
+      - uses: livecycle/preevy-up-action@latest
         id: preevy
         with:
           profile-url: "s3://preevy-297324796627-test3?region=eu-west-1"
