@@ -144,4 +144,4 @@ If you would like to add your organization to the list, please open a PR to add 
 
 Grafana Loki is distributed under [AGPL-3.0-only](LICENSE). For Apache-2.0 exceptions, see [LICENSING.md](LICENSING.md).
 
---- test3
+---- test3
