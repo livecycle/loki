@@ -30,13 +30,11 @@ services:
     volumes:
       - /var/run/docker.sock
     cmd:
-    - compose
     - exec
-    - -it
-    - -u 0 
-    - grafana
+    - -u0 
+    - production-grafana-1
     - sed -i 's/<\/body><\/html>/<script src=\"https:\/\/unpkg.com\/@livecycle\/sdk@stable\/dist\/browser\/index.js\"><\/script><\/body><\/html>/g' /usr/share/grafana/public/views/index.html
-    
+
   grafana:
     environment:
       - GF_PATHS_PROVISIONING=/etc/grafana/provisioning
