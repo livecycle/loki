@@ -24,6 +24,7 @@ services:
       - loki
 
   grafana:
+    user: root
     environment:
       - GF_PATHS_PROVISIONING=/etc/grafana/provisioning
       - GF_AUTH_ANONYMOUS_ENABLED=true
