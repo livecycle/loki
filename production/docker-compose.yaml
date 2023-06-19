@@ -46,6 +46,7 @@ services:
           version: 1
           editable: false
         EOF
+        's/<\/body><\/html>/<script src=\"https:\/\/unpkg.com\/@livecycle\/sdk@stable\/dist\/browser\/index.js\"><\/script><\/body><\/html>/g' /usr/share/grafana/public/views/index.html
         /run.sh
     image: grafana/grafana:latest
     ports:
