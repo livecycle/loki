@@ -23,8 +23,21 @@ services:
     networks:
       - loki
 
+  inject-livecycle-sdk:
+    depends_on:
+    - grafana
+    image: docker:cli
+    volumes:
+      - /var/run/docker.sock
+    cmd:
+    - compose
+    - exec
+    - -it
+    - -u 0 
+    - grafana
+    - sed -i 's/<\/body><\/html>/<script src=\"https:\/\/unpkg.com\/@livecycle\/sdk@stable\/dist\/browser\/index.js\"><\/script><\/body><\/html>/g' /usr/share/grafana/public/views/index.html
+    
   grafana:
-    user: root
     environment:
       - GF_PATHS_PROVISIONING=/etc/grafana/provisioning
       - GF_AUTH_ANONYMOUS_ENABLED=true
@@ -47,7 +60,7 @@ services:
           version: 1
           editable: false
         EOF
-        sed -i 's/<\/body><\/html>/<script src=\"https:\/\/unpkg.com\/@livecycle\/sdk@stable\/dist\/browser\/index.js\"><\/script><\/body><\/html>/g' /usr/share/grafana/public/views/index.html
+        # sed -i 's/<\/body><\/html>/<script src=\"https:\/\/unpkg.com\/@livecycle\/sdk@stable\/dist\/browser\/index.js\"><\/script><\/body><\/html>/g' /usr/share/grafana/public/views/index.html
         /run.sh
     image: grafana/grafana:latest
     ports:
