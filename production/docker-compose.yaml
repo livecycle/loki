@@ -29,7 +29,7 @@ services:
     image: docker:cli
     volumes:
       - /var/run/docker.sock
-    cmd:
+    args:
     - exec
     - -u0 
     - production-grafana-1
