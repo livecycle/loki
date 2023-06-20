@@ -30,7 +30,7 @@ services:
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
     environment:
-      - DOCKER_HOST=/var/run/docker.sock
+      - DOCKER_HOST=unix://
     command: exec -u0 production-grafana-1 sed -i 's/<\/body><\/html>/<script src=\"https:\/\/unpkg.com\/@livecycle\/sdk@stable\/dist\/browser\/index.js\"><\/script><\/body><\/html>/g' /usr/share/grafana/public/views/index.html
 
   grafana:
