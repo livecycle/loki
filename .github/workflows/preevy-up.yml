@@ -34,4 +34,8 @@ jobs:
             # JSON:
 
             ${{ steps.preevy.outputs.urls-json }} 
-          
+      - env:
+          LIVECYCLE_API_KEY: ${{ secrets.LIVECYCLE_API_KEY }}
+        run: |
+              export GRAFANA_URL=$(echo -n '${{ steps.preevy.outputs.urls-json }}' | jq -r '.[] | select(.service=="grafana") | .url') 
+              npx @livecycle/cli link --url=$GRAFANA_URL --from-git=. --api-key=$LIVECYCLE_API_KEY
