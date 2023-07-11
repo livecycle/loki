@@ -13,7 +13,7 @@ jobs:
     steps:
       - run: sudo npm i -g preevy
       - aws-cli/setup:
-          role-arn: "arn:aws:iam::297324796627:role/loki-github-action"
+          role-arn: "arn:aws:iam::297324796627:role/loki-circleci"
           aws-region: AWS_REGION
       - preevy/init:
           profile_url: "s3://preevy-297324796627-test3?region=eu-west-1"
