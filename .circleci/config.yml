@@ -8,7 +8,7 @@ orbs:
 jobs:
   deploy_preview:
     environment:
-        AWS_REGION: us-west-1
+        AWS_REGION: eu-west-1
     executor: preevy/default
     steps:
       - run: sudo npm i -g preevy
