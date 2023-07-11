@@ -13,7 +13,7 @@ jobs:
           profile_url: "s3://preevy-297324796627-test3?region=eu-west-1"
       - checkout
       - preevy/up:
-          docker-compose-yaml-path: "./production/docker-compose.yaml"
+          docker_compose_yaml_path: "./production/docker-compose.yaml"
 # Orchestrate our job run sequence
 workflows:
   deploy_preview:
