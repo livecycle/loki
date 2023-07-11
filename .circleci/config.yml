@@ -7,12 +7,14 @@ orbs:
 # Define the jobs we want to run for this project
 jobs:
   deploy_preview:
+    environment:
+        AWS_REGION: us-west-1
     executor: preevy/default
     steps:
       - run: sudo npm i -g preevy
       - aws-cli/setup:
           role-arn: "arn:aws:iam::297324796627:role/loki-github-action"
-          aws-region: "eu-west-1"
+          aws-region: ${AWS_REGION}
       - preevy/init:
           profile_url: "s3://preevy-297324796627-test3?region=eu-west-1"
       - checkout
