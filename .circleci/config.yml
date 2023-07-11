@@ -18,4 +18,4 @@ jobs:
 workflows:
   deploy_preview:
     jobs:
-      - build
+      - deploy_preview
