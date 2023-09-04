@@ -52,3 +52,6 @@ services:
       - "3000:3000"
     networks:
       - loki
+x-preevy:
+  plugins:
+    - module: '@preevy/plugin-github-pr-link'
