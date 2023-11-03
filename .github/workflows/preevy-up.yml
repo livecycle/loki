@@ -13,6 +13,9 @@ permissions:
 jobs:
   deploy:
     runs-on: ubuntu-latest
+    env:
+      GITHUB_TOKEN: ${{ github.token }}
+
     steps:
       - uses: aws-actions/configure-aws-credentials@v2
         with:
@@ -24,14 +27,4 @@ jobs:
         with:
           profile-url: "s3://preevy-297324796627-test3?region=eu-west-1"
           docker-compose-yaml-path: "./production/docker-compose.yaml"
-      - uses: mshick/add-pr-comment@v2
-        with:
-          message: |
-            # Markdown: 
-
-            ${{ steps.preevy.outputs.urls-markdown }} 
-
-            # JSON:
-
-            ${{ steps.preevy.outputs.urls-json }} 
           
